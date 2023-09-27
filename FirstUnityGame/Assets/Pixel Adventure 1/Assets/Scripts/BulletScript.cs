@@ -6,7 +6,7 @@ public class BulletScript : MonoBehaviour
 {
     //Declaratie en initialisatie van de public variables.
 
-    public float velX = 20f; // De horizontale snelheid wordt ingesteld op 5.
+    public float velX = 20f; // De horizontale snelheid wordt ingesteld op 20.
     public float velY = 0f; // De verticale snelheid is 0 zodat de bullet niet naar beneden valt.
 
     //Declaratie overige variabele(n)
@@ -27,9 +27,9 @@ public class BulletScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) //Deze functie wordt uitgevoerd als de Bullet-Collider die als trigger ingesteld staat
                                             //door een andere collider getriggerd wordt.
     {
-        if (other.CompareTag("Alien"))  //Is de collider die de trigger veroorzaakte een component van een GameObject met als tag 'Alien'.
+        if (other.CompareTag("Enemy"))  //Is de collider die de trigger veroorzaakte een component van een GameObject met als tag 'Enemy'.
         {                               //Deze test vermijdt dat de botsing van een Bullet met een eventueel ander object, de Bullet onnodig zou laten verdwijnen.
-            Destroy(gameObject);        //Indien de Bullet een Alien geraakt heeft (if geeft dan true), dan wordt de kogel vernietigd.
+            Destroy(gameObject);        //Indien de Bullet een Enemy geraakt heeft (if geeft dan true), dan wordt de kogel vernietigd.
         }
 
         if (other.CompareTag("Tilemap"))  //Is de collider die de trigger veroorzaakte een component van een GameObject met als tag 'Tilemap'.
