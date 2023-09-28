@@ -9,7 +9,7 @@ public class ScoreScript : MonoBehaviour
                                   //waarin de score zal
                                   //bijgehouden worden.
                                   //Deze variabele krijgt via
-                                  //het AlienScript zijn waarde.
+                                  //het EnemyScript zijn waarde.
 
     Text score; //Deze variabele gebruiken we om te
                 //bepalen wat er op het scherm getoond
@@ -43,6 +43,11 @@ public class ScoreScript : MonoBehaviour
         if (scoreValue==10)
         {
             score.text = "Enemies Killed: " + scoreValue + "  Killed 'em All";
+        }
+
+        else
+        {
+            score.text = $"Nog {10-scoreValue} enemies te gaan";
         }
         
         
