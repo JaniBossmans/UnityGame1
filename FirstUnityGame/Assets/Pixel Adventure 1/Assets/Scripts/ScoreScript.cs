@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //Vergeet niet UnityEngine.UI te includen!
+using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ScoreScript : MonoBehaviour
                 //bepalen wat er op het scherm getoond
                 //moet worden. (Zie beschrijving in de
                 //functie Start())
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,10 @@ public class ScoreScript : MonoBehaviour
         //In de Update functie gebruiken we deze variabele
         //om de Text eigenschap van de Text component aan
         //te spreken.
-        score = GetComponent<Text>(); 
+        score = GetComponent<Text>();
+
+        //Dit zorgt ervoor dat elke game met een nieuwe score start.
+        scoreValue = 0;
     }
 
     // Update is called once per frame
@@ -38,11 +43,13 @@ public class ScoreScript : MonoBehaviour
         //Letterlijk de tekst "Score: " met daarna de inhoud
         //van de variabele scoreValue.
 
-        score.text = "Enemies Killed: " + scoreValue;
-
+      
+        
         if (scoreValue==10)
         {
-            score.text = "Enemies Killed: " + scoreValue + "  Killed 'em All";
+            score.text = "Killed 'em All, Won the game    Go Trough the Trophy to quit";
+
+           
         }
 
         else
@@ -50,6 +57,19 @@ public class ScoreScript : MonoBehaviour
             score.text = $"Nog {10-scoreValue} enemies te gaan";
         }
         
-        
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (scoreValue == 10)
+        {
+            
+            if (collision.gameObject.CompareTag("End"))
+            {
+                
+                SceneManager.LoadSceneAsync(2);
+            }
+        }
+
+    }
+
 }

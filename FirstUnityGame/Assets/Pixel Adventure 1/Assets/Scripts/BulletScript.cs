@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+
+    
+
     //Declaratie en initialisatie van de public variables.
 
     public float velX = 20f; // De horizontale snelheid wordt ingesteld op 20.
     public float velY = 0f; // De verticale snelheid is 0 zodat de bullet niet naar beneden valt.
-
+    
     //Declaratie overige variabele(n)
 
     Rigidbody2D rb; 
@@ -34,8 +37,10 @@ public class BulletScript : MonoBehaviour
 
         if (other.CompareTag("Tilemap"))  //Is de collider die de trigger veroorzaakte een component van een GameObject met als tag 'Tilemap'.
         {                               //Deze test vermijdt dat de botsing van een Bullet met een eventueel ander object, de Bullet onnodig zou laten verdwijnen.
-            Destroy(gameObject);        //Indien de Bullet de zijkant van een platform geraakt heeft (if geeft dan true), dan wordt de kogel vernietigd.
+            velX = velX - (velX * 2);     //Indien de Bullet de zijkant van een platform geraakt heeft (if geeft dan true), dan veranderd de kogel van richting.
         }
+
+        
     }
 
     // Update is called once per frame

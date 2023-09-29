@@ -8,6 +8,7 @@ TagManager:
   - Tilemap
   - Enemy
   - ScoreText
+  - End
   layers:
   - Default
   - TransparentFX

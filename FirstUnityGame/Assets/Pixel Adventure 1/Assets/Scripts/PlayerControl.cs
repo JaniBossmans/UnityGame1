@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -58,6 +59,13 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown( "Fire1"))
         {
             Fire(); //De functie Fire wordt uitgevoerd als de Fire1 button ingedrukt wordt (dit is ingesteld op de linkse CTRL toets).
+        }
+
+        // Controleer of de speler onder een bepaalde Y-positie valt (bijv. -10).
+        if (transform.position.y < -10f)
+        {
+            // Laad de doodsscene.
+            SceneManager.LoadSceneAsync(2);
         }
     }
     void Fire()
