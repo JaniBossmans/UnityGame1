@@ -39,8 +39,15 @@ public class BulletScript : MonoBehaviour
         {                               //Deze test vermijdt dat de botsing van een Bullet met een eventueel ander object, de Bullet onnodig zou laten verdwijnen.
             velX = velX - (velX * 2);     //Indien de Bullet de zijkant van een platform geraakt heeft (if geeft dan true), dan veranderd de kogel van richting.
         }
+        if (other.CompareTag("Traps"))  
+        {                               
+            velX = velX - (velX * 2);  
+        }
 
         
+
+
+
     }
 
     // Update is called once per frame

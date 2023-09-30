@@ -12,17 +12,4 @@ public class ScoreScene : MonoBehaviour
         // SceneManager.LoadSceneAsync(0) laadt een nieuwe scene met de index 0, als je dus op de button duwt ga je naar ge IntroScene terug.
         SceneManager.LoadSceneAsync(0);
     }
-
-    Text score;
-
-    void Start()
-    {
-        score = GetComponent<Text>();
-        score.text = $"Behaalde Score: {ScoreScript.scoreValue}";
-    }
-
-    
-    
-       
-    
 }

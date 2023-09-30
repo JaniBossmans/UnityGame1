@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour
         {
             //Toegevoegd om de sprite te flippen op de X-as als er op de linkse pijltoets gedrukt wordt.
             mySpriteRenderer.flipX = true;
-            //Einde toevoeging
+           
 
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
@@ -43,7 +43,7 @@ public class PlayerControl : MonoBehaviour
             //Toegevoegd om de sprite origineel te tonen als er op de rechtse pijltoets gedrukt wordt.
             //(origineel = kijkend naar rechts)
             mySpriteRenderer.flipX = false;
-            //Einde toevoeging
+            
 
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
@@ -93,6 +93,21 @@ public class PlayerControl : MonoBehaviour
                                                                         //3 argumenten. Het derde argument geeft de rotatie aan. We stellen dit hier in op
                                                                         //Quaternion.identity, wat betekent: geen rotatie t.o.v. de wereld waarin het object
                                                                         //zich bevindt.
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+            SceneManager.LoadSceneAsync(2);
+        }
+
+        if (collision.gameObject.CompareTag("Traps"))
+        {
+
+            SceneManager.LoadSceneAsync(2);
+        }
     }
 }
 

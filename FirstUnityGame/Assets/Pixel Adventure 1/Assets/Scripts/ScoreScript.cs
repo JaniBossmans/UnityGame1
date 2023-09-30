@@ -21,27 +21,21 @@ public class ScoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //De Text component van het ScoreText gameObject
-        //wordt aan de lokale variabele score gekoppeld.
-        //In de Update functie gebruiken we deze variabele
-        //om de Text eigenschap van de Text component aan
-        //te spreken.
+        //Zorgt ervoor dat de text word gelinkt aan het in-unity text component
         score = GetComponent<Text>();
 
         //Dit zorgt ervoor dat elke game met een nieuwe score start.
         scoreValue = 0;
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         //De text eigenschap van de Text component
         //kunnen we aanspreken als score.text aangezien we
         //in de functie Start() reeds de koppeling maakten
         //tussen de lokale variabele score en de Text component.
-        //Wat wordt er getoond?
-        //Letterlijk de tekst "Score: " met daarna de inhoud
-        //van de variabele scoreValue.
+        
 
       
         
@@ -54,11 +48,11 @@ public class ScoreScript : MonoBehaviour
 
         else
         {
-            score.text = $"Nog {10-scoreValue} enemies te gaan";
+            score.text = $"Score:{ scoreValue},      Nog {10-scoreValue} enemies te gaan";
         }
         
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)   //Zorgt ervoor dat je alleen door de finish kunt bij 10 kills
     {
         if (scoreValue == 10)
         {

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - ScoreText
   - End
+  - Traps
   layers:
   - Default
   - TransparentFX
