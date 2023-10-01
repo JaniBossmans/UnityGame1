@@ -7,8 +7,12 @@ public class PlayerControl : MonoBehaviour
 {
     
     public float speed = 1.5f;
-
-    
+    private Animator anim;
+    private float dirX = 0f;
+    private float dirY = 0f;
+    private Rigidbody2D rb;
+    private enum MovementState { Idle, Running, Jumping, Falling };
+   
 
     //Variabele die zal geïnitialiseerd worden op de SpriteRenderer component van de Player.
     //Via deze variabele kunnen we de property flipX aanspreken die we nodig hebben om de sprite
@@ -18,18 +22,24 @@ public class PlayerControl : MonoBehaviour
     //
     public GameObject bulletToRight, bulletToLeft;
     Vector2 bulletPos;
+
+   
         
     //Awake() wordt uitgevoerd als het GameObject gemaakt wordt.
     private void Awake()
     {
         //De variabele mySpriteRenderer 
-        mySpriteRenderer = GetComponent<SpriteRenderer>(); 
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
     //Einde toevoeging
 
    
     void Update()
     {
+        dirX = Input.GetAxisRaw("Horizontal");
+        dirY = Input.GetAxisRaw("Vertical");
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //Toegevoegd om de sprite te flippen op de X-as als er op de linkse pijltoets gedrukt wordt.
@@ -53,7 +63,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += Vector3.down * speed * Time.deltaTime;
+            transform.position += Vector3.down * Time.deltaTime;
         }
 
         if (Input.GetButtonDown( "Fire1"))
@@ -67,7 +77,41 @@ public class PlayerControl : MonoBehaviour
             // Laad de doodsscene.
             SceneManager.LoadSceneAsync(2);
         }
+
+        UpdateAnimationState();
     }
+
+
+    public void UpdateAnimationState()
+    {
+        MovementState state;
+
+        if (dirX > 0f)
+        {
+            state = MovementState.Running;
+        }
+        else if (dirX < 0f)
+        {
+            state = MovementState.Running;
+        }
+        else
+        {
+            state = MovementState.Idle;
+        }
+
+        if (dirY > .1f)
+        {
+            state = MovementState.Jumping;
+        }
+        else if(rb.velocity.y <= -.1f)
+        {
+            state = MovementState.Falling;
+        }
+
+        anim.SetInteger("state", (int)state);
+    }
+
+
     void Fire()
     {
 
