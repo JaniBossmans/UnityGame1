@@ -38,10 +38,12 @@ public class BulletScript : MonoBehaviour
         if (other.CompareTag("Tilemap"))  //Is de collider die de trigger veroorzaakte een component van een GameObject met als tag 'Tilemap'.
         {                               //Deze test vermijdt dat de botsing van een Bullet met een eventueel ander object, de Bullet onnodig zou laten verdwijnen.
             velX = velX - (velX * 2);     //Indien de Bullet de zijkant van een platform geraakt heeft (if geeft dan true), dan veranderd de kogel van richting.
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z); // Omdraaien van de sprite.
         }
         if (other.CompareTag("Traps"))  
         {                               
-            velX = velX - (velX * 2);  
+            velX = velX - (velX * 2);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
         
